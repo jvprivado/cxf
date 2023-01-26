@@ -1,4 +1,7 @@
+
 var aClient = "";
+var domainID = "";
+var clientID = "";
 
 function loginGo(){
 
@@ -7,6 +10,12 @@ console.log(  document.getElementsByClassName("auth0-lock-header").length);
 document.getElementById("1-submit").click();
 
 
+}
+
+
+function authInit(domainId,clientId){
+domainID = domainId;
+clientID = clientId;
 }
 
 
@@ -29,8 +38,8 @@ var privateStore = {};
 var lock;
 
 lock = new Auth0Lock(
-  'NReLRFqp11SxQjBkwgjqt8lszUcpusVd',
-'dev-rysgkhvq2lgtw0up.us.auth0.com',
+  clientID,
+domainID,
 
 {   allowSignUp: false,"container":"fff","auth":{"redirectUrl":'http://localhost:3000/Dashboard', "redirect":true}}
 
@@ -81,8 +90,8 @@ function register(email,password){
 
 // Initialize client
 var webAuth = new auth0.WebAuth({
-domain:       'dev-rysgkhvq2lgtw0up.us.auth0.com',
-clientID:     'NReLRFqp11SxQjBkwgjqt8lszUcpusVd'
+domain:       domainID,
+clientID:     clientID
 });
 
 webAuth.signup({ 
